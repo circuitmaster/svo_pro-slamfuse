@@ -1,9 +1,6 @@
 project(svo_tracker)
 cmake_minimum_required(VERSION 2.8.3)
 
-find_package(catkin_simple REQUIRED)
-catkin_simple()
-
 include(SvoSetup)
 
 set(HEADERS
@@ -20,9 +17,4 @@ set(SOURCES
   src/feature_tracker.cpp
   )
 
-cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
-
-################################################################################
-cs_install()
-cs_export()
-
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})

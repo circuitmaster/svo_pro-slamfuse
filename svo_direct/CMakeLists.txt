@@ -1,8 +1,6 @@
 project(svo_direct)
 cmake_minimum_required(VERSION 2.8.3)
 
-find_package(catkin_simple REQUIRED)
-catkin_simple(ALL_DEPS_REQUIRED)
 find_package(OpenCV REQUIRED)
 
 include(SvoSetup)
@@ -32,34 +30,17 @@ set(SOURCES
   src/elder_zucker.cpp
   )
 
-cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
 
-cs_add_executable(svo_test_patch_score test/test_patch_score.cpp)
+add_executable(svo_test_patch_score test/test_patch_score.cpp)
 target_link_libraries(svo_test_patch_score ${PROJECT_NAME})
 
-cs_add_executable(svo_test_edgelet_direction test/test_edgelet_direction.cpp)
+add_executable(svo_test_edgelet_direction test/test_edgelet_direction.cpp)
 target_link_libraries(svo_test_edgelet_direction ${PROJECT_NAME})
 
-cs_add_executable(svo_test_edgelet_extraction test/test_edgelet_extraction.cpp)
+add_executable(svo_test_edgelet_extraction test/test_edgelet_extraction.cpp)
 target_link_libraries(svo_test_edgelet_extraction ${PROJECT_NAME})
 
-cs_add_executable(svo_test_feature_alignment test/test_feature_alignment.cpp)
+add_executable(svo_test_feature_alignment test/test_feature_alignment.cpp)
 target_link_libraries(svo_test_feature_alignment ${PROJECT_NAME})
-
-################################################################################
-###
-### GTEST
-###
-
-catkin_add_gtest(${PROJECT_NAME}-test-depth-estimation
-  test/test_depth_estimation.cpp
-  test/test_utils.h
-)
-target_link_libraries(${PROJECT_NAME}-test-depth-estimation ${PROJECT_NAME} pthread)
-
-
-################################################################################
-cs_install()
-cs_export()
-

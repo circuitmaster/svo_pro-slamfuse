@@ -1,8 +1,6 @@
 project(vikit_common)
 cmake_minimum_required(VERSION 2.8.3)
 
-find_package(catkin_simple REQUIRED)
-catkin_simple(ALL_DEPS_REQUIRED)
 find_package(OpenCV REQUIRED)
 
 include(SvoSetup)
@@ -38,24 +36,5 @@ set(SOURCES
   )
 
 # Create vikit shared library
-cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
-################################################################################
-# Unit tests
-catkin_add_gtest(homography test/test_homography.cpp)
-target_link_libraries(homography gtest ${PROJECT_NAME})
-
-catkin_add_gtest(math_utils test/test_math_utils.cpp)
-target_link_libraries(math_utils gtest ${PROJECT_NAME})
-
-################################################################################
-# Other tests
-cs_add_executable(vikit_test_timer test/test_timer.cpp)
-target_link_libraries(vikit_test_timer ${PROJECT_NAME})
-
-cs_add_executable(vikit_test_common test/test_common.cpp)
-target_link_libraries(vikit_test_common ${PROJECT_NAME})
-
-################################################################################
-cs_install()
-cs_export()

@@ -1,9 +1,6 @@
 project(svo_global_map)
 cmake_minimum_required(VERSION 2.8.3)
 
-find_package(catkin_simple REQUIRED)
-catkin_simple()
-
 find_package(GTSAMCMakeTools REQUIRED)
 find_package(GTSAM REQUIRED)
 message(STATUS ${GTSAM_INCLUDE_DIR})
@@ -31,8 +28,5 @@ set(SOURCES
   src/null_stream.cpp
   )
 
-cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_link_libraries(${PROJECT_NAME} gtsam)
-
-cs_install()
-cs_export()

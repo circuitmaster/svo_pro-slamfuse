@@ -1,9 +1,6 @@
 project(svo)
 cmake_minimum_required(VERSION 2.8.3)
 
-find_package(catkin_simple)
-catkin_simple()
-
 include(SvoSetup)
 
 list(APPEND SVO_SOURCEFILES
@@ -40,17 +37,5 @@ list(APPEND SVO_HEADERFILES
 ################################################################################
 # Create svo library
 include_directories(include ${INCLUDE_DIRS})
-cs_add_library(svo SHARED ${SVO_SOURCEFILES} ${SVO_HEADERFILES})
+add_library(svo SHARED ${SVO_SOURCEFILES} ${SVO_HEADERFILES})
 target_link_libraries(svo ${LINK_LIBS})
-
-################################################################################
-###
-### GTEST
-###
-
-catkin_add_gtest(${PROJECT_NAME}-test-frame test/test_frame.cpp)
-target_link_libraries(${PROJECT_NAME}-test-frame ${PROJECT_NAME})
-
-################################################################################
-cs_install()
-cs_export()

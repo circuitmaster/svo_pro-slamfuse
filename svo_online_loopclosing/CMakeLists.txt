@@ -1,8 +1,6 @@
 project(svo_online_loopclosing)
 cmake_minimum_required(VERSION 2.8.3)
 
-find_package(catkin_simple REQUIRED)
-catkin_simple(ALL_DEPS_REQUIRED)
 find_package(OpenCV REQUIRED)
 
 include(SvoSetup)
@@ -26,14 +24,11 @@ set(SOURCES
   )
 
 #add_executable(svo_online_loopclosing ${SOURCES} ${HEADERS})
-cs_add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
 
-cs_add_library(bow src/bow.cpp include/svo/online_loopclosing/bow.h)
+add_library(bow src/bow.cpp include/svo/online_loopclosing/bow.h)
 target_link_libraries(bow ${OpenCV_LIBRARIES})
 
-cs_add_executable(createvoc test/createvoc.cpp)
+add_executable(createvoc test/createvoc.cpp)
 target_link_libraries(createvoc bow)
-
-cs_install()
-cs_export()
