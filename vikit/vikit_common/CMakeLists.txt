@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 2.8.3)
 
 find_package(OpenCV REQUIRED)
 
-include(SvoSetup)
+# Add the directory containing vikit headers to the include directories
+include_directories(include)
 
 set(HEADERS
   include/vikit/blender_utils.h
@@ -37,4 +38,10 @@ set(SOURCES
 
 # Create vikit shared library
 add_library(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+
+# Export include directories
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})

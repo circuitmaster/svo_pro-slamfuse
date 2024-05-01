@@ -5,7 +5,7 @@
  *      by: cforster
  */
 
-#include <glog/logging.h>
+// Modified: #include <glog/logging.h>
 #include <vikit/homography.h>
 #include <vikit/math_utils.h>
 #include <vikit/homography_decomp.h> // copy of homography decomposition in opencv3
@@ -55,7 +55,7 @@ Homography estimateHomography(
     n_inliers += inliers[i];
   }
 
-  VLOG(100) << "Homography has " << n_inliers << " inliers";
+  // Modified: VLOG(100) << "Homography has " << n_inliers << " inliers";
   if(n_inliers < min_num_inliers)
   {
     return Homography(); // return homography with score zero.
